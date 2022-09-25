@@ -6,8 +6,7 @@ import socketserver
 import signal
 from os import urandom
 from hashlib import sha256
-#from flag import FLAG
-FLAG = b"flag{test_flag}"
+from flag import FLAG
 
 BANNER = rb"""
 .--------.--------.--------.--------.     .--------.--------.--------.--------.--------.
