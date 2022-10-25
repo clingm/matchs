@@ -1,3 +1,5 @@
+# Okamoto–Uchiyama cryptosystem
+
 from sage.all import *
 from sage.all_cmdline import *
 from gmpy2 import iroot
@@ -10,7 +12,10 @@ q = next_prime(iroot(n, 3)[0])
 p, f = iroot(n // q, 2)
 assert p**2*q == n and f == 1
 
-mp = m % p
-g = Mod(g, p)
-flag1 = discrete_log(mp, g)
-print(flag1)
+a = (pow(m, p-1, p**2) - 1) // p
+b = (pow(g, p-1, p**2) - 1) // p
+
+bp = inverse_mod(b, p)
+
+flag = a*bp % p
+print(bytes.fromhex(hex(flag)[2:]))
